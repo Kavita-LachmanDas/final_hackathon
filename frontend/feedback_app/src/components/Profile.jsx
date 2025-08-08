@@ -226,16 +226,35 @@ const Profile = () => {
     }
   };
 
-  const handleUpdate = async () => {
+const handleUpdate = async () => {
+  try {
     setIsUpdating(true);
-    // Simulate API call
-    setTimeout(() => {
-      alert("Profile updated successfully!");
-      setIsUpdating(false);
-      setIsEditing(false);
-      setPreviewImage(null);
-    }, 2000);
-  };
+    const token = getToken();
+    
+    const updateData = {
+      name: user.name,
+      email: user.email,
+      contact: user.contact
+    };
+
+    const res = await axios.put("http://localhost:7000/api/auth/profile", updateData, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    });
+
+    setUser(res.data.user);
+    alert("Profile updated successfully!");
+    setIsEditing(false);
+    
+  } catch (err) {
+    console.error("Failed to update profile", err);
+    alert("Failed to update profile. Please try again.");
+  } finally {
+    setIsUpdating(false);
+  }
+};
 
   const handleDelete = async () => {
     const confirmDelete = window.confirm("Are you sure you want to delete your profile?");
