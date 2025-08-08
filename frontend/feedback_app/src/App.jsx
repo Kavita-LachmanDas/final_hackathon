@@ -8,7 +8,7 @@ import PublicRoute from './components/PublicRoute.jsx'
 import ProtectedRoute from './components/ProtectedRoute.jsx'
 
 import StyleDetail from './components/StyleDetail.jsx'
-import Navbar from './components/Navbar.jsx'
+
 import AddHijabStyle from './components/AddHijabStyle.jsx'
 
 const App = () => {
