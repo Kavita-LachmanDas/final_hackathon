@@ -1242,7 +1242,7 @@ export function Profile() {
       setIsLoading(true);
       try {
         const token = getToken();
-        const res = await axios.get("http://localhost:7000/api/auth/profile", {
+        const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/auth/profile`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -1283,7 +1283,7 @@ export function Profile() {
 
     try {
       const token = getToken();
-      const res = await axios.put("http://localhost:7000/api/auth/profile", formData, {
+      const res = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/auth/profile`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "multipart/form-data",
@@ -1307,7 +1307,7 @@ export function Profile() {
   const handleDelete = async () => {
     try {
       const token = getToken();
-      const res = await axios.delete("http://localhost:7000/api/auth/profile", {
+      const res = await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/auth/profile`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -1545,7 +1545,7 @@ export default function HijabList() {
   const fetchStyles = async () => {
     setIsLoading(true);
     try {
-      const res = await axios.get("http://localhost:7000/api/auth/hijabstyles", {
+      const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/auth/hijabstyles`, {
         headers: { Authorization: `Bearer ${getToken()}` },
       });
       setStyles(res.data);
@@ -1581,7 +1581,7 @@ export default function HijabList() {
       }
 
       await axios.post(
-        `http://localhost:7000/api/auth/hijabstyles/${styleId}/review`,
+        `${import.meta.env.VITE_BACKEND_URL}/auth/hijabstyles/${styleId}/review`,
         { text, rating },
         { headers: { Authorization: `Bearer ${getToken()}` } }
       );
@@ -1619,7 +1619,7 @@ export default function HijabList() {
       }
 
       await axios.patch(
-        `http://localhost:7000/api/auth/hijabstyles/${styleId}/review/${reviewId}`,
+        `${import.meta.env.VITE_BACKEND_URL}/auth/hijabstyles/${styleId}/review/${reviewId}`,
         { text, rating },
         { headers: { Authorization: `Bearer ${getToken()}` } }
       );
@@ -1636,7 +1636,7 @@ export default function HijabList() {
 
     try {
       await axios.delete(
-        `http://localhost:7000/api/auth/hijabstyles/${styleId}/review/${reviewId}`,
+        `${import.meta.env.VITE_BACKEND_URL}/auth/hijabstyles/${styleId}/review/${reviewId}`,
         { headers: { Authorization: `Bearer ${getToken()}` } }
       );
       fetchStyles();

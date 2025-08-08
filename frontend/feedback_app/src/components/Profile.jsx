@@ -196,7 +196,7 @@ const Profile = () => {
       try {
         setIsLoading(true);
         const token = getToken();
-        const res = await axios.get("http://localhost:7000/api/auth/profile", {
+        const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/auth/profile`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -237,7 +237,7 @@ const handleUpdate = async () => {
       contact: user.contact
     };
 
-    const res = await axios.put("http://localhost:7000/api/auth/profile", updateData, {
+    const res = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/auth/profile`, updateData, {
       headers: {
         Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json',

@@ -9,7 +9,7 @@ const GetAllUsers = () => {
     const fetchusers = async () => {
       try {
         const token = getToken();
-        const res = await axios.get("http://localhost:7000/api/auth/users", {
+        const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/auth/users`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
